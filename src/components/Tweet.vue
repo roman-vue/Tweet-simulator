@@ -1,9 +1,9 @@
 <template>
     <div class="tweet-form container" :class="{ open: showForm }">
         <form @submit.prevent="sendTweet">
-            <input class="form-control" placeholder="Tu nombre" v-model="username" />
-            <textarea class="form-control" rows="3" placeholder="Escribe tu tweet" v-model="tweet"></textarea>
-            <button type="submit" class="btn btn-primary">Enviar Tweet</button>
+            <input class="form-control" placeholder="Your Name" v-model="username" />
+            <textarea class="form-control" rows="3" placeholder="Your Tweet" v-model="tweet"></textarea>
+            <button type="submit" class="btn btn-primary">Send Tweet</button>
         </form>
     </div>
 </template>

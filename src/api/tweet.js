@@ -33,3 +33,13 @@ export function getTweetsApi() {
     }
     return [];
 }
+
+export function deleteTweetApi(idTweet) {
+    const tweets = getTweetsApi();
+
+    remove(tweets, function (tweet) {
+        return tweet.id === idTweet;
+    });
+
+    localStorage.setItem(TWEETS, JSON.stringify(tweets));
+}

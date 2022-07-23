@@ -1,7 +1,9 @@
 <template>
     <div class="container">
-        <h1 class="text-center mb-4">Lista de Tweets</h1>
-        <p v-if="tweets.length === 0">No hay ningun tweet</p>
+        <h1 class="text-center mb-4">List Of Tweets</h1>
+        <p v-if="tweets.length === 0">
+            <NoTweet />
+        </p>
         <div class="tweet" v-for="tweet in tweets" :key="tweet.id">
             <p class="tweet__title">{{ tweet.username }}</p>
             <p class="tweet__text">{{ tweet.tweet }}</p>
@@ -12,17 +14,31 @@
 </template>
 
 <script>
+import Close from "./Icons/Close";
+import NoTweet from "./Icons/NoTweet";
+import { deleteTweetApi } from "../api/tweet.js";
 export default {
     props: {
         tweets: Array,
         reloadTweets: Function,
     },
+    components: {
+        Close,
+        NoTweet,
+    },
+
     setup(props) {
         const formatDate = (date) => {
             return new Date().toISOString();
         };
+
+        const deleteTweet = (idTweet) => {
+            deleteTweetApi(idTweet);
+            props.reloadTweets();
+        };
         return {
             formatDate,
+            deleteTweet,
         };
     },
 };
